@@ -1,0 +1,29 @@
+name: "upload app to app live BrowserStack"
+description: "This actions uploads your app to BrowserStack"
+inputs:
+  app-path: # path of app
+    description: "Please provide the path for the app to be uploaded"
+    required: true
+    default: "Undefined"
+  browserstack-username: # path of app
+    description: "Please provide the username for BrowserStack"
+    required: true
+    default: "Undefined"
+  browserstack-accesskey: # path of app
+    description: "Please provide the accesskey for BrowserStack"
+    required: true
+    default: "Undefined"
+  custom-id: # custom id for the app
+    description: "Please provide any custom id"
+    required: false
+    default: "upload-app-browserstack"
+  app-to-replace: # app to replace in browserstack
+    description: "Please provide app name to remove before upload"
+    required: false
+    default: "Undefined"
+outputs:
+  browserstack-app-url: # browserstack app url
+    description: "The browserstack app url uploaded"
+runs:
+  using: "node16"
+  main: "build/index.js"

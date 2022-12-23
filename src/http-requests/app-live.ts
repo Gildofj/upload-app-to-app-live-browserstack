@@ -1,5 +1,5 @@
 import fs from "fs";
-import core from "@actions/core";
+import * as core from "@actions/core";
 import FormData from "form-data";
 
 import apiAppLive from "../utils/api-app-live";

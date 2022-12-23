@@ -1,4 +1,27 @@
 "use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -41,7 +64,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.removeApp = exports.uploadApp = exports.getRecentApps = void 0;
 var fs_1 = __importDefault(require("fs"));
-var core_1 = __importDefault(require("@actions/core"));
+var core = __importStar(require("@actions/core"));
 var form_data_1 = __importDefault(require("form-data"));
 var api_app_live_1 = __importDefault(require("../utils/api-app-live"));
 function getRecentApps() {
@@ -65,7 +88,7 @@ function uploadApp(_a) {
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
-                    customId = core_1.default.getInput('custom-id');
+                    customId = core.getInput('custom-id');
                     form_data = new form_data_1.default();
                     form_data.append("file", fs_1.default.createReadStream(appPath));
                     form_data.append("custom_id", customId);
@@ -73,7 +96,7 @@ function uploadApp(_a) {
                 case 1:
                     response = _b.sent();
                     console.log(response);
-                    core_1.default.setOutput("browserstack-app-url", response.data.app_url);
+                    core.setOutput("browserstack-app-url", response.data.app_url);
                     return [2 /*return*/];
             }
         });

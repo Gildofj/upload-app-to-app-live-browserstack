@@ -1,4 +1,27 @@
 "use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -39,8 +62,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __importDefault(require("@actions/core"));
-var github_1 = __importDefault(require("@actions/github"));
+var core = __importStar(require("@actions/core"));
+var github = __importStar(require("@actions/github"));
 var app_live_1 = require("./http-requests/app-live");
 var api_app_live_1 = __importDefault(require("./utils/api-app-live"));
 (function () {
@@ -50,20 +73,20 @@ var api_app_live_1 = __importDefault(require("./utils/api-app-live"));
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 5, , 6]);
-                    appPath = core_1.default.getInput('app-path');
+                    appPath = core.getInput('app-path');
                     if (!appPath)
-                        core_1.default.setFailed('app-path is required');
-                    bsUserName = core_1.default.getInput('browserstack-username');
+                        core.setFailed('app-path is required');
+                    bsUserName = core.getInput('browserstack-username');
                     if (!bsUserName)
-                        core_1.default.setFailed('browserstack-username is required');
-                    bsAccessKey = core_1.default.getInput('browserstack-accesskey');
+                        core.setFailed('browserstack-username is required');
+                    bsAccessKey = core.getInput('browserstack-accesskey');
                     if (!bsAccessKey)
-                        core_1.default.setFailed('browserstack-accesskey is required');
+                        core.setFailed('browserstack-accesskey is required');
                     api_app_live_1.default.defaults.auth = {
                         username: bsUserName,
                         password: bsAccessKey
                     };
-                    appToReplace_1 = core_1.default.getInput("app-to-replace");
+                    appToReplace_1 = core.getInput("app-to-replace");
                     console.log("appPath -  ".concat(appPath, "!"));
                     if (!appToReplace_1) return [3 /*break*/, 3];
                     return [4 /*yield*/, (0, app_live_1.getRecentApps)()];
@@ -78,12 +101,12 @@ var api_app_live_1 = __importDefault(require("./utils/api-app-live"));
                 case 3: return [4 /*yield*/, (0, app_live_1.uploadApp)({ appPath: appPath })];
                 case 4:
                     _a.sent();
-                    payload = JSON.stringify(github_1.default.context.payload, undefined, 2);
+                    payload = JSON.stringify(github.context.payload, undefined, 2);
                     console.log("The event payload: ".concat(payload));
                     return [3 /*break*/, 6];
                 case 5:
                     error_1 = _a.sent();
-                    core_1.default.setFailed(error_1.message);
+                    core.setFailed(error_1.message);
                     return [3 /*break*/, 6];
                 case 6: return [2 /*return*/];
             }

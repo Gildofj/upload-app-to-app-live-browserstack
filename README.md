@@ -1,6 +1,6 @@
 # upload-app-to-app-live-browserstack action
 
-This action helps you upload your app to BrowserStack.
+This action helps you upload your app to App Live BrowserStack.
 
 ## Inputs
 

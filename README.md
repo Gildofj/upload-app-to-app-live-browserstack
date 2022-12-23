@@ -1,6 +1,6 @@
 # upload-app-to-app-live-browserstack action
 
-This action helps you upload your app to BrowserStack.
+This action helps you upload your app to App Live BrowserStack.
 
 ## Inputs
 
@@ -34,7 +34,7 @@ The url for the app uploaded.
 
 ```
 - name: Upload APK to APP Live BrowserStack
-  uses: DeviTecnologia/upload-app-to-app-live-browserstack@main
+  uses: Gildofj/upload-app-to-app-live-browserstack@master
   with:
     app-path: /path-to-apk/app.apk
     browserstack-username: ${{ secrets.BROWSERSTACK_USERNAME }}

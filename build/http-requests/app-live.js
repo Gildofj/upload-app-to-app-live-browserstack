@@ -54,7 +54,6 @@ function uploadApp({ appPath }) {
         form_data.append("file", fs.createReadStream(appPath));
         form_data.append("custom_id", customId);
         const response = yield api_app_live_1.default.post("/upload", form_data);
-        console.log(response);
         core.setOutput("browserstack-app-url", response.data.app_url);
     });
 }

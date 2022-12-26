@@ -18,24 +18,28 @@ import apiAppLive from "./utils/api-app-live";
     if (!bsAccessKey)
       core.setFailed('browserstack-accesskey is required');
 
-    apiAppLive.defaults.auth = {
-      username: bsUserName,
-      password: bsAccessKey
-    };
+    if (appPath && bsUserName && bsAccessKey) {
+      apiAppLive.defaults.auth = {
+        username: bsUserName,
+        password: bsAccessKey
+      };
 
 
-    const appToReplace = core.getInput("app-to-replace");
-    console.log(`appPath -  ${appPath}!`);
-    if (appToReplace) {
-      const apps = await getRecentApps();
-      const app = apps.find(app => app.app_name === appToReplace);
+      const appToReplace = core.getInput("app-to-replace");
+      console.log(`appPath -  ${appPath}!`);
+      if (appToReplace) {
+        const apps = await getRecentApps();
+        const app = apps?.find(app => app.app_name === appToReplace);
 
-      if (app)
-        await removeApp({ appId: app.app_id });
+        if (app)
+          await removeApp({ appId: app.app_id });
+        else
+          console.log("appToReplace informado não encontrado para o usuário em questão!");
+      }
+
+      await uploadApp({ appPath });
+
     }
-
-    await uploadApp({ appPath });
-
     // Get the JSON webhook payload for the event that triggered the workflow
     const payload = JSON.stringify(github.context.payload, undefined, 2)
     console.log(`The event payload: ${payload}`);

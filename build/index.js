@@ -72,7 +72,7 @@ var api_app_live_1 = __importDefault(require("./utils/api-app-live"));
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 5, , 6]);
+                    _a.trys.push([0, 7, , 8]);
                     appPath = core.getInput('app-path');
                     if (!appPath)
                         core.setFailed('app-path is required');
@@ -82,33 +82,39 @@ var api_app_live_1 = __importDefault(require("./utils/api-app-live"));
                     bsAccessKey = core.getInput('browserstack-accesskey');
                     if (!bsAccessKey)
                         core.setFailed('browserstack-accesskey is required');
+                    if (!(appPath && bsUserName && bsAccessKey)) return [3 /*break*/, 6];
                     api_app_live_1.default.defaults.auth = {
                         username: bsUserName,
                         password: bsAccessKey
                     };
                     appToReplace_1 = core.getInput("app-to-replace");
                     console.log("appPath -  ".concat(appPath, "!"));
-                    if (!appToReplace_1) return [3 /*break*/, 3];
+                    if (!appToReplace_1) return [3 /*break*/, 4];
                     return [4 /*yield*/, (0, app_live_1.getRecentApps)()];
                 case 1:
                     apps = _a.sent();
-                    app = apps.find(function (app) { return app.app_name === appToReplace_1; });
+                    app = apps === null || apps === void 0 ? void 0 : apps.find(function (app) { return app.app_name === appToReplace_1; });
                     if (!app) return [3 /*break*/, 3];
                     return [4 /*yield*/, (0, app_live_1.removeApp)({ appId: app.app_id })];
                 case 2:
                     _a.sent();
-                    _a.label = 3;
-                case 3: return [4 /*yield*/, (0, app_live_1.uploadApp)({ appPath: appPath })];
-                case 4:
+                    return [3 /*break*/, 4];
+                case 3:
+                    console.log("appToReplace informado não encontrado para o usuário em questão!");
+                    _a.label = 4;
+                case 4: return [4 /*yield*/, (0, app_live_1.uploadApp)({ appPath: appPath })];
+                case 5:
                     _a.sent();
+                    _a.label = 6;
+                case 6:
                     payload = JSON.stringify(github.context.payload, undefined, 2);
                     console.log("The event payload: ".concat(payload));
-                    return [3 /*break*/, 6];
-                case 5:
+                    return [3 /*break*/, 8];
+                case 7:
                     error_1 = _a.sent();
                     core.setFailed(error_1.message);
-                    return [3 /*break*/, 6];
-                case 6: return [2 /*return*/];
+                    return [3 /*break*/, 8];
+                case 8: return [2 /*return*/];
             }
         });
     });

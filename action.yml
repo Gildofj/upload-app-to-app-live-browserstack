@@ -1,4 +1,4 @@
-name: "upload app to app live BrowserStack"
+name: "Upload app to app live BrowserStack"
 description: "This actions uploads your app to BrowserStack"
 author: "Gildofj"
 branding:

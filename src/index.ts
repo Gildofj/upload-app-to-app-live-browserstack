@@ -3,6 +3,7 @@ import * as github from "@actions/github";
 
 import { getRecentApps, removeApp, uploadApp } from "./http-requests/app-live";
 import apiAppLive from "./utils/api-app-live";
+import { AppLive } from "./http-requests/types";
 
 (async function () {
   try {
@@ -29,12 +30,14 @@ import apiAppLive from "./utils/api-app-live";
       console.log(`appPath -  ${appPath}!`);
       if (appToReplace) {
         const apps = await getRecentApps();
-        const app = apps?.find(app => app.app_name === appToReplace);
+        if (apps.length > 0) {
+          const app = apps?.find(app => app.app_name === appToReplace);
 
-        if (app)
-          await removeApp({ appId: app.app_id });
-        else
-          console.log("appToReplace informado não encontrado para o usuário em questão!");
+          if (app)
+            await removeApp({ appId: app.app_id });
+          else
+            console.log("appToReplace informado não encontrado para o usuário em questão!");
+        }
       }
 
       await uploadApp({ appPath });

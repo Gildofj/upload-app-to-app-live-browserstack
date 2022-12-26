@@ -93,7 +93,6 @@ var api_app_live_1 = __importDefault(require("./utils/api-app-live"));
                     return [4 /*yield*/, (0, app_live_1.getRecentApps)()];
                 case 1:
                     apps = _a.sent();
-                    core.setOutput("Apps", apps);
                     if (!(apps && apps.length > 0)) return [3 /*break*/, 4];
                     app = apps.find(function (app) { return app.app_name === appToReplace_1; });
                     if (!app) return [3 /*break*/, 3];

@@ -30,7 +30,6 @@ import apiAppLive from "./utils/api-app-live";
       console.log(`appPath -  ${appPath}!`);
       if (appToReplace) {
         const apps = await getRecentApps();
-        core.setOutput("Apps", apps);
         if (apps && apps.length > 0) {
           const app = apps.find(app => app.app_name === appToReplace);
 

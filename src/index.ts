@@ -1,6 +1,5 @@
 import * as core from "@actions/core";
 import * as github from "@actions/github";
-import { consumers } from "stream";
 
 import { getRecentApps, removeApp, uploadApp } from "./http-requests/app-live";
 import apiAppLive from "./utils/api-app-live";

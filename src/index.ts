@@ -30,6 +30,7 @@ import { AppLive } from "./http-requests/types";
       console.log(`appPath -  ${appPath}!`);
       if (appToReplace) {
         const apps = await getRecentApps();
+        console.log(apps);
         if (apps.length > 0) {
           const app = apps?.find(app => app.app_name === appToReplace);
 

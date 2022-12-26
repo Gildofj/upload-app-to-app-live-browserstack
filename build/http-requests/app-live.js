@@ -63,7 +63,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.removeApp = exports.uploadApp = exports.getRecentApps = void 0;
-var fs_1 = __importDefault(require("fs"));
+var fs = __importStar(require("fs"));
 var core = __importStar(require("@actions/core"));
 var form_data_1 = __importDefault(require("form-data"));
 var api_app_live_1 = __importDefault(require("../utils/api-app-live"));
@@ -90,7 +90,7 @@ function uploadApp(_a) {
                 case 0:
                     customId = core.getInput('custom-id');
                     form_data = new form_data_1.default();
-                    form_data.append("file", fs_1.default.createReadStream(appPath));
+                    form_data.append("file", fs.createReadStream(appPath));
                     form_data.append("custom_id", customId);
                     return [4 /*yield*/, api_app_live_1.default.post("/upload", form_data)];
                 case 1:

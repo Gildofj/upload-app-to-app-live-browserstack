@@ -1,9 +1,9 @@
 import * as core from "@actions/core";
 import * as github from "@actions/github";
+import { consumers } from "stream";
 
 import { getRecentApps, removeApp, uploadApp } from "./http-requests/app-live";
 import apiAppLive from "./utils/api-app-live";
-import { AppLive } from "./http-requests/types";
 
 (async function () {
   try {
@@ -30,7 +30,7 @@ import { AppLive } from "./http-requests/types";
       console.log(`appPath -  ${appPath}!`);
       if (appToReplace) {
         const apps = await getRecentApps();
-        console.log(apps);
+        core.setOutput("Apps", apps);
         if (apps.length > 0) {
           const app = apps?.find(app => app.app_name === appToReplace);
 

@@ -35,7 +35,7 @@ import apiAppLive from "./utils/api-app-live";
           if (app)
             await removeApp({ appId: app.app_id });
           else
-            console.log("appToReplace informado não encontrado para o usuário em questão!");
+            console.log("reported app-to-replace not found for the user in question reported not found for the user in question!");
         }
       }
 

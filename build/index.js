@@ -67,45 +67,47 @@ var github = __importStar(require("@actions/github"));
 var app_live_1 = require("./http-requests/app-live");
 var api_app_live_1 = __importDefault(require("./utils/api-app-live"));
 (function () {
+    var _a;
     return __awaiter(this, void 0, void 0, function () {
-        var appPath, bsUserName, bsAccessKey, appToReplace_1, apps, app, payload, error_1;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
+        var appToReplace_1, apps, app, payload, error_1;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
                 case 0:
-                    _a.trys.push([0, 5, , 6]);
-                    appPath = core.getInput('app-path');
-                    if (!appPath)
-                        core.setFailed('app-path is required');
-                    bsUserName = core.getInput('browserstack-username');
-                    if (!bsUserName)
-                        core.setFailed('browserstack-username is required');
-                    bsAccessKey = core.getInput('browserstack-accesskey');
-                    if (!bsAccessKey)
-                        core.setFailed('browserstack-accesskey is required');
+                    _b.trys.push([0, 5, , 6]);
+                    // const appPath = core.getInput('app-path');
+                    // if (!appPath)
+                    //   core.setFailed('app-path is required');
+                    // const bsUserName = core.getInput('browserstack-username');
+                    // if (!bsUserName)
+                    //   core.setFailed('browserstack-username is required');
+                    // const bsAccessKey = core.getInput('browserstack-accesskey');
+                    // if (!bsAccessKey)
+                    //   core.setFailed('browserstack-accesskey is required');
                     api_app_live_1.default.defaults.auth = {
-                        username: bsUserName,
-                        password: bsAccessKey
+                        username: "gildojunior_SHvnJP",
+                        password: "7PHsbjMZrSqURi7zMEwa" //bsAccessKey
                     };
-                    appToReplace_1 = core.getInput("app-to-replace");
-                    console.log("appPath -  ".concat(appPath, "!"));
-                    if (!appToReplace_1) return [3 /*break*/, 3];
+                    appToReplace_1 = "App.Celular-Default-release.aab" //core.getInput("app-to-replace");
+                    ;
+                    if (!appToReplace_1) return [3 /*break*/, 4];
                     return [4 /*yield*/, (0, app_live_1.getRecentApps)()];
                 case 1:
-                    apps = _a.sent();
-                    app = apps === null || apps === void 0 ? void 0 : apps.find(function (app) { return app.app_name === appToReplace_1; });
+                    apps = _b.sent();
+                    app = (_a = apps === null || apps === void 0 ? void 0 : apps.find(function (app) { return app.app_name === appToReplace_1; })) !== null && _a !== void 0 ? _a : undefined;
                     if (!app) return [3 /*break*/, 3];
                     return [4 /*yield*/, (0, app_live_1.removeApp)({ appId: app.app_id })];
                 case 2:
-                    _a.sent();
-                    _a.label = 3;
-                case 3: return [4 /*yield*/, (0, app_live_1.uploadApp)({ appPath: appPath })];
+                    _b.sent();
+                    return [3 /*break*/, 4];
+                case 3:
+                    console.log("appToReplace informado não encontrado para o usuário em questão!");
+                    _b.label = 4;
                 case 4:
-                    _a.sent();
                     payload = JSON.stringify(github.context.payload, undefined, 2);
                     console.log("The event payload: ".concat(payload));
                     return [3 /*break*/, 6];
                 case 5:
-                    error_1 = _a.sent();
+                    error_1 = _b.sent();
                     core.setFailed(error_1.message);
                     return [3 /*break*/, 6];
                 case 6: return [2 /*return*/];

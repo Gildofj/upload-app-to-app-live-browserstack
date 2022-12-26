@@ -1,5 +1,5 @@
 name: "Upload app to app live BrowserStack"
-description: "This actions uploads your app to BrowserStack"
+description: "This actions uploads your mobile app to App Live in BrowserStack"
 author: "Gildofj"
 branding:
   icon: "upload-cloud"

@@ -1,5 +1,9 @@
 name: "upload app to app live BrowserStack"
 description: "This actions uploads your app to BrowserStack"
+author: "Gildofj"
+branding:
+  icon: "upload-cloud"
+  color: "orange"
 inputs:
   app-path: # path of app
     description: "Please provide the path for the app to be uploaded"

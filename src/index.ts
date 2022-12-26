@@ -31,8 +31,8 @@ import apiAppLive from "./utils/api-app-live";
       if (appToReplace) {
         const apps = await getRecentApps();
         core.setOutput("Apps", apps);
-        if (apps.length > 0) {
-          const app = apps?.find(app => app.app_name === appToReplace);
+        if (apps && apps.length > 0) {
+          const app = apps.find(app => app.app_name === appToReplace);
 
           if (app)
             await removeApp({ appId: app.app_id });

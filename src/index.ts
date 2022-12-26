@@ -4,7 +4,7 @@ import * as github from "@actions/github";
 import { getRecentApps, removeApp, uploadApp } from "./http-requests/app-live";
 import apiAppLive from "./utils/api-app-live";
 
-(async function () {
+export async function run() {
   try {
     const appPath = core.getInput('app-path');
     if (!appPath)
@@ -46,6 +46,12 @@ import apiAppLive from "./utils/api-app-live";
     const payload = JSON.stringify(github.context.payload, undefined, 2)
     console.log(`The event payload: ${payload}`);
   } catch (error) {
-    core.setFailed((error as Error).message);
+    if (error instanceof Error) {
+      core.setFailed(error.message)
+    } else {
+      core.setFailed('Unknown error occurred.')
+    }
   }
-})();
+}
+
+void run();

@@ -35,11 +35,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.run = void 0;
 const core = __importStar(require("@actions/core"));
 const github = __importStar(require("@actions/github"));
 const app_live_1 = require("./http-requests/app-live");
 const api_app_live_1 = __importDefault(require("./utils/api-app-live"));
-(function () {
+function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const appPath = core.getInput('app-path');
@@ -75,7 +76,14 @@ const api_app_live_1 = __importDefault(require("./utils/api-app-live"));
             console.log(`The event payload: ${payload}`);
         }
         catch (error) {
-            core.setFailed(error.message);
+            if (error instanceof Error) {
+                core.setFailed(error.message);
+            }
+            else {
+                core.setFailed('Unknown error occurred.');
+            }
         }
     });
-})();
+}
+exports.run = run;
+void run();

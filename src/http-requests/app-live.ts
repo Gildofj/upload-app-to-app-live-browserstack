@@ -3,7 +3,7 @@ import * as core from "@actions/core";
 import FormData from "form-data";
 
 import apiAppLive from "../utils/api-app-live";
-import { AppLive, RemoveAppProps, UploadAppProps } from "./types";
+import { AppLive, RemoveAppProps, UploadAppProps, UploadAppResponse } from "./types";
 
 export async function getRecentApps() {
   const response = await apiAppLive.get<AppLive[]>("/recent_apps");
@@ -15,8 +15,7 @@ export async function uploadApp({ appPath }: UploadAppProps) {
   const form_data = new FormData();
   form_data.append("file", fs.createReadStream(appPath));
   form_data.append("custom_id", customId);
-  const response = await apiAppLive.post("/upload", form_data);
-  console.log(response);
+  const response = await apiAppLive.post<UploadAppResponse>("/upload", form_data);
   core.setOutput("browserstack-app-url", response.data.app_url);
 }
 

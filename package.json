@@ -1,7 +1,7 @@
 {
   "name": "upload-app-to-app-live-browsertack",
   "version": "1.0.0",
-  "description": "",
+  "description": "This actions uploads your mobile app to App Live in BrowserStack",
   "main": "index.js",
   "scripts": {
     "start": "npm run build && node build/index.js",
@@ -9,10 +9,14 @@
     "build": "rimraf ./build && tsc"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Gildofj",
+  "license": "MIT",
   "devDependencies": {
     "@types/node": "^18.11.17",
+    "@typescript-eslint/eslint-plugin": "^5.47.1",
+    "@typescript-eslint/parser": "^5.47.1",
+    "eslint": "^8.30.0",
+    "github-action-ts-run-api": "^2.3.0",
     "nodemon": "^2.0.20",
     "rimraf": "^3.0.2",
     "ts-node": "^10.9.1",

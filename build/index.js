@@ -65,7 +65,7 @@ const api_app_live_1 = __importDefault(require("./utils/api-app-live"));
                         if (app)
                             yield (0, app_live_1.removeApp)({ appId: app.app_id });
                         else
-                            console.log("appToReplace informado não encontrado para o usuário em questão!");
+                            console.log("reported app-to-replace not found for the user in question reported not found for the user in question!");
                     }
                 }
                 yield (0, app_live_1.uploadApp)({ appPath });

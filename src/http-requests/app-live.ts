@@ -7,6 +7,8 @@ import { AppLive, RemoveAppProps, UploadAppProps } from "./types";
 
 export async function getRecentApps() {
   const response = await apiAppLive.get<AppLive[]>("/recent_apps");
+  console.log(response);
+  console.log(response.data);
   return response.data
 }
 

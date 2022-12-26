@@ -1,6 +1,6 @@
 __tests__/runner/*
 
-# node_modules/
+node_modules/
 
 .idea/
 

@@ -1,24 +1,36 @@
 {
-  "name": "upload-app-to-app-live-browsertack",
+  "name": "upload-app-to-app-live-browserstack",
   "version": "1.0.0",
+  "private": true,
   "description": "This actions uploads your mobile app to App Live in BrowserStack",
-  "main": "index.js",
+  "main": "build/index.js",
   "scripts": {
     "start": "npm run build && node build/index.js",
-    "dev": "npx nodemon",
-    "build": "rimraf ./build && tsc"
+    "build": "ncc build src/main.ts -m -o build/",
+    "test": "jest"
   },
-  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gildofj/upload-app-to-app-live-browserstack.git"
+  },
+  "keywords": [
+    "actions",
+    "node",
+    "setup",
+    "browserstack"
+  ],
   "author": "Gildofj",
   "license": "MIT",
   "devDependencies": {
+    "@types/jest": "^29.2.4",
     "@types/node": "^18.11.17",
     "@typescript-eslint/eslint-plugin": "^5.47.1",
     "@typescript-eslint/parser": "^5.47.1",
+    "@vercel/ncc": "^0.36.0",
     "eslint": "^8.30.0",
     "github-action-ts-run-api": "^2.3.0",
-    "nodemon": "^2.0.20",
-    "rimraf": "^3.0.2",
+    "jest": "^29.3.1",
+    "ts-jest": "^29.0.3",
     "ts-node": "^10.9.1",
     "typescript": "^4.9.4"
   },

@@ -6,37 +6,35 @@ import apiAppLive from "./utils/api-app-live";
 
 (async function () {
   try {
-    // const appPath = core.getInput('app-path');
-    // if (!appPath)
-    //   core.setFailed('app-path is required');
+    const appPath = core.getInput('app-path');
+    if (!appPath)
+      core.setFailed('app-path is required');
 
-    // const bsUserName = core.getInput('browserstack-username');
-    // if (!bsUserName)
-    //   core.setFailed('browserstack-username is required');
+    const bsUserName = core.getInput('browserstack-username');
+    if (!bsUserName)
+      core.setFailed('browserstack-username is required');
 
-    // const bsAccessKey = core.getInput('browserstack-accesskey');
-    // if (!bsAccessKey)
-    //   core.setFailed('browserstack-accesskey is required');
+    const bsAccessKey = core.getInput('browserstack-accesskey');
+    if (!bsAccessKey)
+      core.setFailed('browserstack-accesskey is required');
 
     apiAppLive.defaults.auth = {
-      username: "gildojunior_SHvnJP", //bsUserName,
-      password: "7PHsbjMZrSqURi7zMEwa"//bsAccessKey
+      username: bsUserName,
+      password: bsAccessKey
     };
 
 
-    const appToReplace = "App.Celular-Default-release.aab"//core.getInput("app-to-replace");
-    // console.log(`appPath -  ${appPath}!`);
+    const appToReplace = core.getInput("app-to-replace");
+    console.log(`appPath -  ${appPath}!`);
     if (appToReplace) {
       const apps = await getRecentApps();
-      const app = apps?.find(app => app.app_name === appToReplace) ?? undefined;
+      const app = apps?.find(app => app.app_name === appToReplace);
 
       if (app)
         await removeApp({ appId: app.app_id });
-      else
-        console.log("appToReplace informado não encontrado para o usuário em questão!");
     }
 
-    // await uploadApp({ appPath });
+    await uploadApp({ appPath });
 
     // Get the JSON webhook payload for the event that triggered the workflow
     const payload = JSON.stringify(github.context.payload, undefined, 2)

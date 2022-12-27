@@ -4,7 +4,7 @@ const target = RunTarget.mainJs("action.yml");
 
 async function expectRunInitiatesUpload(options: RunOptions) {
   const result = await target.run(options);
-  expect(result.commands.errors.length).toBe(0);
+  expect(result.isSuccess).toBe(true);
 }
 
 test("correct bare minimum inputs", async () => {

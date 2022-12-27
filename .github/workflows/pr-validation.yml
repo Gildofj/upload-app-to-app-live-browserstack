@@ -38,5 +38,5 @@ jobs:
         if: steps.verify-changed-files.outputs.files_changed == 'true'
         run: exit 1
 
-      # - name: Run Tests
-      #   run: npm test
+      - name: Run Tests
+        run: npm test

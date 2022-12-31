@@ -3,14 +3,25 @@ import * as core from "@actions/core";
 import FormData from "form-data";
 
 import apiAppLive from "../utils/api-app-live";
-import { AppLive, RemoveAppProps, UploadAppProps, UploadAppResponse } from "./types";
+import { AppLive, InitializeApiAppLiveProps, RemoveAppProps, UploadAppProps, UploadAppResponse } from "./types";
+
+export function initializeApiAppLive({ username, password }: InitializeApiAppLiveProps) {
+  apiAppLive.defaults.auth = { username, password };
+}
 
 export async function getRecentApps() {
-  const response = await apiAppLive.get<AppLive[]>("/recent_apps");
-  return response.data
+  try {
+    const response = await apiAppLive.get<AppLive[]>("/recent_apps");
+    return response.data
+  } catch (err) {
+    throw err as Error;
+  }
 }
 
 export async function uploadApp({ appPath }: UploadAppProps) {
+  if (!appPath)
+      throw new Error("appId is required for upload app");
+
   const customId = core.getInput('custom-id');
   const form_data = new FormData();
   form_data.append("file", fs.createReadStream(appPath));
@@ -20,5 +31,8 @@ export async function uploadApp({ appPath }: UploadAppProps) {
 }
 
 export async function removeApp({ appId }: RemoveAppProps) {
-  await apiAppLive.delete(`/app/delete/${appId}`);
+    if (!appId)
+      throw new Error("appId is required for remove app");
+
+    await apiAppLive.delete(`/app/delete/${appId}`);
 }

@@ -1,8 +1,7 @@
 import * as core from "@actions/core";
 import * as github from "@actions/github";
 
-import { getRecentApps, removeApp, uploadApp } from "./http-requests/app-live";
-import apiAppLive from "./utils/api-app-live";
+import { getRecentApps, initializeApiAppLive, removeApp, uploadApp } from "./http-requests/app-live";
 
 export async function run() {
   try {
@@ -19,12 +18,7 @@ export async function run() {
       core.setFailed('browserstack-accesskey is required');
 
     if (appPath && bsUserName && bsAccessKey) {
-      apiAppLive.defaults.auth = {
-        username: bsUserName,
-        password: bsAccessKey
-      };
-
-
+      initializeApiAppLive({ username: bsUserName, password: bsAccessKey });
       const appToReplace = core.getInput("app-to-replace");
       console.log(`appPath -  ${appPath}!`);
       if (appToReplace) {

@@ -17,3 +17,8 @@ export type AppLive = {
   app_id: string,
   uploaded_at: string,
 }
+
+export type InitializeApiAppLiveProps = {
+  username: string,
+  password: string
+}

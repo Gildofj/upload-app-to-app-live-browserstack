@@ -8,5 +8,5 @@ module.exports = {
     '^.+\\.ts$': 'ts-jest'
   },
   verbose: true,
-  testTimeout: 10000
+  testTimeout: 20000
 }

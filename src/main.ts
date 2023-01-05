@@ -29,7 +29,7 @@ export async function run() {
           if (app)
             await removeApp({ appId: app.app_id });
           else
-            console.log("reported app-to-replace not found for the user in question reported not found for the user in question!");
+            console.log("Reported app-to-replace not found for the user in question reported not found for the user in question!");
         }
       }
 

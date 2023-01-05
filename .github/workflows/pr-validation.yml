@@ -31,7 +31,7 @@ jobs:
         uses: tj-actions/verify-changed-files@v9.2
         id: verify-built-lib
         with:
-          files: lib/index.js
+          files: build/index.js
 
       # If it did change, the authro forgot to build. Fail the action
       - name: Verify Build Updated

@@ -6,21 +6,21 @@ import { getRecentApps, initializeApiAppLive, removeApp, uploadApp } from "./htt
 export async function run() {
   try {
     const appPath = core.getInput('app-path');
-    if (!appPath)
+    if (appPath === 'undefined')
       core.setFailed('app-path is required');
 
     const bsUserName = core.getInput('browserstack-username');
-    if (!bsUserName)
+    if (bsUserName === 'undefined')
       core.setFailed('browserstack-username is required');
 
     const bsAccessKey = core.getInput('browserstack-accesskey');
-    if (!bsAccessKey)
+    if (bsAccessKey === 'undefined')
       core.setFailed('browserstack-accesskey is required');
 
-    if (appPath && bsUserName && bsAccessKey) {
+    if (appPath !== 'undefined' && bsUserName !== 'undefined' && bsAccessKey !== 'undefined') {
       initializeApiAppLive({ username: bsUserName, password: bsAccessKey });
-      const appToReplace = core.getInput("app-to-replace");
       console.log(`appPath -  ${appPath}!`);
+      const appToReplace = core.getInput("app-to-replace");
       if (appToReplace) {
         const apps = await getRecentApps();
         if (apps && apps.length > 0) {

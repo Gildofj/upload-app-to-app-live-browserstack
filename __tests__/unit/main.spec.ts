@@ -34,12 +34,7 @@ describe("try upload app to browserstack", () => {
   });
 
   it("without any input", async () => {
-    const options = RunOptions.create()
-      .setInputs({
-        "app-path": "",
-        "browserstack-username": "",
-        "browserstack-accesskey": "",
-      });
+    const options = RunOptions.create().setInputs({});
 
     const result = await target.run(options);
     expect(result.isSuccess).toBe(false);
@@ -52,7 +47,6 @@ describe("try upload app to browserstack", () => {
   it("without required app-path input", async () => {
     const options = RunOptions.create()
       .setInputs({
-        "app-path": "",
         "browserstack-username": "username",
         "browserstack-accesskey": "accesskey",
       });
@@ -67,7 +61,6 @@ describe("try upload app to browserstack", () => {
     const options = RunOptions.create()
       .setInputs({
         "app-path": "path",
-        "browserstack-username": "",
         "browserstack-accesskey": "accesskey",
       });
 
@@ -82,7 +75,6 @@ describe("try upload app to browserstack", () => {
       .setInputs({
         "app-path": "path",
         "browserstack-username": "username",
-        "browserstack-accesskey": "",
       });
 
     const result = await target.run(options);
@@ -97,7 +89,6 @@ describe("try upload app to browserstack", () => {
         "app-path": "path",
         "browserstack-username": "username",
         "browserstack-accesskey": "accesskey",
-        "custom-id": "",
         "app-to-replace": "appToReplace"
       });
 
@@ -114,11 +105,9 @@ describe("try upload app to browserstack", () => {
         "browserstack-username": "username",
         "browserstack-accesskey": "accesskey",
         "custom-id": "customId",
-        "app-to-replace": ""
       });
 
     const result = await target.run(options);
-    console.log(result);
     expect(result.isSuccess).toBe(false);
     expect(result.commands.errors.length).toBe(1);
     expect(result.commands.errors).toContain("Request failed with status code 401");

@@ -6,15 +6,15 @@ This action helps you upload your app to App Live BrowserStack.
 
 ### `app-path`
 
-**Required** The path for the app to be uploaded. Default `"Undefined"`.
+**Required** The path for the app to be uploaded.
 
 ### `browserstack-username`
 
-**Required** The username for BrowserStack. Default `"Undefined"`.
+**Required** The username for BrowserStack.
 
 ### `browserstack-accesskey`
 
-**Required** The accesskey for BrowserStack. Default `"Undefined"`.
+**Required** The accesskey for BrowserStack.
 
 ### `custom-id`
 

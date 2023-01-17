@@ -21,7 +21,7 @@ export async function getRecentApps() {
 export async function uploadApp({ appPath }: UploadAppProps) {
   try {
     if (!appPath)
-      throw new Error("appId is required for upload app");
+      throw new Error("appPath is required for upload app");
 
     const customId = core.getInput('custom-id', { required: false });
     const form_data = new FormData();
